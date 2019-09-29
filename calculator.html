@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Calculator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                let numQ = 0;
+                let opQ = [];
+                let mOp = "";
+                
+                $(document).on("click", ".btn", function() {
+                    if($.isNumeric($(this).text()) || $(this).attr("id") == "btndot"){
+                        if($(this).text() === "0"){
+                            //$('#calcscreen').append($(this).text());
+                            numQ = 0;
+                            $("#calcscreen").text("0");
+                        }
+                        else{
+                            $('#calcscreen').append($(this).text());
+                            numQ = parseFloat($("p").text(), 10);
+                            $("#calcscreen").val(numQ);
+                        }
+                        console.log("I am in first if statement and nuMQ is " + numQ);
+                    }
+                    else if(!$.isNumeric($(this).text())){
+                        if( $(this).attr("id") == "plus" || $(this).attr("id") == "minus" || $(this).attr("id") == "multiply" 
+                            || $(this).attr("id") == "divide" || $(this).attr("id") == "pm" 
+                            || $(this).attr("id") == "percent"){
+                            mOp = $(this).text();
+                            opQ.push(numQ);
+                            if($(this).attr("id") == "pm"){
+                                opQ = [];
+                                mOp = '-';
+                            }
+                            if($(this).attr("id") == "percent"){
+                                opQ = [];
+                                mOp = '0.01*';
+                            }
+                            opQ.push(mOp);
+                        }
+                        if($(this).attr("id") == "clr"){
+                            location.reload(true);
+                        }
+                        if($(this).attr("id") == "equals"){
+                            console.log(opQ);
+                            opQ.push(numQ);
+                            var a = eval(opQ.join("").toString());
+                            opQ.length = 0;
+                            opQ.push(a);
+                            numQ = "";
+                        }
+                        $("#calcscreen").empty();
+                        $("#calcscreen").text(a);
+                    }
+                });
+            });
+        </script>
+        <style>
+            .calcborder{
+                height: 420px;
+                width: 200px;
+                background: #aaaaaa;
+                margin: 0 auto;
+                border-radius: 20px;
+                box-shadow: 1px 3px 1px 3px grey;
+                padding: 25px;
+            }
+            #horizontal{
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #cardid {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                height: 30px;
+            }
+            .btn{
+                border-radius: 10px;
+                text-align: center;
+            }
+           #clr,#pm, #percent {
+                background-color: grey;
+                font-weight: bold;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid" style="margin-top:200px;">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 calcborder">
+                    <div id="cardid" class="card bg-white"><p id="calcscreen"><p></div>
+                    <hr id="horizontal" style="background-color:none;"><br>
+                    <div class="row">
+                        <div class="col-sm-3"><button id="clr" class="btn btn-block" style="background-color:saddlebrown;">AC</button></div>
+                        <div class="col-sm-3"><button id="pm"  class="btn btn-block" value="-">+/-</button></div>
+                        <div class="col-sm-3"><button id="percent" class="btn btn-block" >%</button></div>
+                        <div class="col-sm-3">
+                            <button id="divide" class="btn btn-default btn-block btn-primary" style="background:orange;">/</button>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-3"><button id="btn7" class="btn btn-default btn-block btn-primary">7</button></div>
+                        <div class="col-sm-3"><button id="btn8" class="btn btn-default btn-block btn-primary">8</button></div>
+                        <div class="col-sm-3"><button id="btn9" class="btn btn-default btn-block btn-primary">9</button></div>
+                        <div class="col-sm-3">
+                            <button id="multiply" class="btn btn-default btn-block btn-primary" style="background:orange;">*</button>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-3"><button id="btn4" class="btn btn-default btn-block btn-primary">4</button></div>
+                        <div class="col-sm-3"><button id="btn5" class="btn btn-default btn-block btn-primary">5</button></div>
+                        <div class="col-sm-3"><button id="btn6" class="btn btn-default btn-block btn-primary">6</button></div>
+                        <div class="col-sm-3">
+                            <button id="minus" class="btn btn-default btn-block btn-primary" style="background:orange;">-</button>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-3"><button id="btn1" class="btn btn-default btn-block btn-primary">1</button></div>
+                        <div class="col-sm-3"><button id="btn2" class="btn btn-default btn-block btn-primary">2</button></div>
+                        <div class="col-sm-3"><button id="btn3" class="btn btn-default btn-block btn-primary">3</button></div>
+                        <div class="col-sm-3">
+                            <button id="plus" class="btn btn-default btn-block btn-primary" style="background:orange;">+</button>
+                        </div>
+                    </div><br>
+                    <div class="row">
+                        <div class="col-sm-3"><button id="btn0"   class="btn btn-default btn-block btn-primary">0</button></div>
+                        <div class="col-sm-3"><button id="btndot" class="btn btn-default btn-block btn-primary">.</button></div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
+                            <button id="equals" class="btn btn-default btn-block btn-primary" style="background:orange;">=</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </body>
+</html>
