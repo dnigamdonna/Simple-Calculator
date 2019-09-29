@@ -1,6 +1,5 @@
 # Simple-Calculator
-                                          Simple Calculator
-                                          ![](images/calculatorscreenshot.png)
+![calculator](https://user-images.githubusercontent.com/51460019/65827263-3e753400-e245-11e9-92dd-12d11842bb34.png)                                         
 
 Basic function of a calculator - Add, Subtract, Divide and Multiply. Use 'AC' to clear the calculation.
 
