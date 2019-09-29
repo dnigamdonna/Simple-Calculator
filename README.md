@@ -1,7 +1,7 @@
 # Simple-Calculator
 Simple Calculator
 
-Basic function of calculator - Add, Subtract, Divide and Multiply. Use 'AC' to clear the calculation.
+Basic function of a calculator - Add, Subtract, Divide and Multiply. Use 'AC' to clear the calculation.
 
 1. Calculator is created using HTML, CSS, BOOTSTRAP, and JQUERY.
 
